@@ -4,7 +4,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shirt",
     slug: "shirt1",
-    image: "../image/shirt1,",
+    image: "../images/shirt1.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -16,7 +16,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shirt",
     slug: "shirt2",
-    image: "../image/shirt2,",
+    image: "../images/shirt2.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -28,7 +28,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shirt",
     slug: "shirt3",
-    image: "../image/shirt3,",
+    image: "../images/shirt3.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -40,7 +40,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shirt",
     slug: "shirt4",
-    image: "../image/shirt4,",
+    image: "../images/shirt4.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -52,7 +52,7 @@ export const sampleProducts: Product[] = [
   {
     name: "tshirt",
     slug: "tshirt1",
-    image: "../image/tshirt1,",
+    image: "../images/tshirt1.jpg",
     category: "tshirt",
     brand: "Nike",
     price: 120,
@@ -64,7 +64,7 @@ export const sampleProducts: Product[] = [
   {
     name: "tshirt",
     slug: "tshirt2",
-    image: "../image/tshirt2,",
+    image: "../images/tshirt2.jpg",
     category: "tshirt",
     brand: "Nike",
     price: 120,
@@ -76,7 +76,7 @@ export const sampleProducts: Product[] = [
   {
     name: "tshirt",
     slug: "tshirt3",
-    image: "../image/tshirt3,",
+    image: "../images/tshirt3.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -88,7 +88,7 @@ export const sampleProducts: Product[] = [
   {
     name: "tshirt",
     slug: "tshirt4",
-    image: "../image/tshirt4,",
+    image: "../images/tshirt4.jpg",
     category: "tshirt",
     brand: "Nike",
     price: 120,
@@ -100,7 +100,7 @@ export const sampleProducts: Product[] = [
   {
     name: "tshirt",
     slug: "tshirt5",
-    image: "../image/tshirt5,",
+    image: "../images/tshirt5.jpg",
     category: "tshirt",
     brand: "Nike",
     price: 120,
@@ -112,7 +112,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jacket",
     slug: "jacket1",
-    image: "../image/jacket1,",
+    image: "../images/jacket1.jpg",
     category: "jacket",
     brand: "Nike",
     price: 120,
@@ -124,7 +124,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jacket",
     slug: "jacket2",
-    image: "../image/jacket2,",
+    image: "../images/jacket2.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -136,7 +136,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jeans",
     slug: "jeans1",
-    image: "../image/jeans1,",
+    image: "../images/jeans1.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -148,7 +148,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jeans",
     slug: "jeans2",
-    image: "../image/jeans2,",
+    image: "../images/jeans2.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -160,7 +160,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jeans",
     slug: "jeans3",
-    image: "../image/jeans3,",
+    image: "../images/jeans3.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -172,7 +172,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jeans",
     slug: "jeans4",
-    image: "../image/jeans4,",
+    image: "../images/jeans4.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -184,7 +184,7 @@ export const sampleProducts: Product[] = [
   {
     name: "jeans",
     slug: "jeans5",
-    image: "../image/jeans5,",
+    image: "../images/jeans5.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -196,7 +196,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shoe",
     slug: "shoe1",
-    image: "../image/shoe1,",
+    image: "../images/shoe1.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -208,7 +208,7 @@ export const sampleProducts: Product[] = [
   {
     name: "shoe",
     slug: "shoe2",
-    image: "../image/shoe2,",
+    image: "../images/shoe2.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -220,7 +220,7 @@ export const sampleProducts: Product[] = [
   {
     name: "trouser",
     slug: "trouser1",
-    image: "../image/trouser1,",
+    image: "../images/trouser1.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -232,7 +232,7 @@ export const sampleProducts: Product[] = [
   {
     name: "trouser",
     slug: "trouser2",
-    image: "../image/trouser2,",
+    image: "../images/trouser2.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -244,7 +244,7 @@ export const sampleProducts: Product[] = [
   {
     name: "trouser",
     slug: "trouser3",
-    image: "../image/trouser3,",
+    image: "../images/trouser3.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -256,7 +256,7 @@ export const sampleProducts: Product[] = [
   {
     name: "trouser",
     slug: "trouser4",
-    image: "../image/trouser4,",
+    image: "../images/trouser4.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
@@ -268,7 +268,7 @@ export const sampleProducts: Product[] = [
   {
     name: "trouser",
     slug: "trouser5",
-    image: "../image/trouser5,",
+    image: "../images/trouser5.jpg",
     category: "shirt",
     brand: "Nike",
     price: 120,
