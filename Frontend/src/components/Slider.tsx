@@ -4,18 +4,18 @@ import { RxDotFilled } from "react-icons/rx";
 
 const Slider = () => {
   const slides = [
-    { url: "./src/images/tshirt1.jpg" },
-    { url: "./src/images/tshirt2.jpg" },
-    { url: "./src/images/shirt1.jpg" },
-    { url: "./src/images/shirt2.jpg" },
-    { url: "./src/images/jeans1.jpg" },
-    { url: "./src/images/jeans2.jpg" },
-    { url: "./src/images/jacket1.jpg" },
-    { url: "./src/images/jacket2.jpg" },
-    { url: "./src/images/trouser1.jpg" },
-    { url: "./src/images/trouser2.jpg" },
-    { url: "./src/images/shoe1.jpg" },
-    { url: "./src/images/shoe2.jpg" },
+    { url: "../images/tshirt1.jpg" },
+    { url: "../images/tshirt2.jpg" },
+    { url: "../images/shirt1.jpg" },
+    { url: "../images/shirt2.jpg" },
+    { url: "../images/jeans1.jpg" },
+    { url: "../images/jeans2.jpg" },
+    { url: "../images/jacket1.jpg" },
+    { url: "../images/jacket2.jpg" },
+    { url: "../images/trouser1.jpg" },
+    { url: "../images/trouser2.jpg" },
+    { url: "../images/shoe1.jpg" },
+    { url: "../images/shoe2.jpg" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
