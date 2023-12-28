@@ -12,15 +12,16 @@ const home = () => {
       </Helmet>
       <Navbar />
       <Slider />
-      <div className="m-4 grid grid-cols-4 max-w-content max-h-content gap-4">
+      <div className="m-4 grid grid-cols-4 gap-4">
         {sampleProducts!.map((product) => {
           return (
-            <div className="bg-white m-4 rounded-lg pb-4 w-auto">
+            <div className="bg-white m-4 rounded-xl pb-4 w-auto">
               <ProductItems key={product.slug} product={product}></ProductItems>
             </div>
           );
         })}
       </div>
+      <div className="flex justify-center p-10">All rights reserved</div>
     </div>
   );
 };
