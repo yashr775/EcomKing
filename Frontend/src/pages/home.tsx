@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import { Helmet } from "react-helmet";
-import { sampleProducts } from "../data";
+import sampleProducts from "../data";
 import ProductItems from "../components/ProductItems";
 
 const home = () => {

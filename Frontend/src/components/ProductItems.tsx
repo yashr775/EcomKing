@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Product } from "../types/products";
 import Rating from "./Rating";
 
@@ -6,16 +7,16 @@ type Props = {
 };
 
 const ProductItems = (props: Props) => {
-  const { image, name, numReviews, price, rating } = props.product;
+  const { image, name, numReviews, price, rating, slug } = props.product;
   return (
     <div>
       <div className="max-w-content max-h-content">
         <img src={image} alt={name} />
       </div>
       <div className="p-4 text-2xl text-blue-600 underline cursor-pointer">
-        {name}
+        <Link to={`/product/${slug}`}>{name}</Link>
       </div>
-      <div className="pl-4 text-yellow-400">
+      <div className="pl-4 ">
         <Rating reviews={numReviews} rating={rating} />
       </div>
       <div className="pl-4">${price}</div>

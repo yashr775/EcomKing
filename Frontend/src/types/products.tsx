@@ -11,3 +11,5 @@ export type Product = {
   rating: number;
   numReviews: number;
 };
+
+export default Product;

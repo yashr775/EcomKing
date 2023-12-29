@@ -10,53 +10,53 @@ const Rating = (props: Prop) => {
   const { reviews, rating } = props;
   return (
     <div className="flex">
-      <div className="pt-1">
+      <div className="pt-1 text-yellow-400">
         {rating >= 1 ? (
-          <TiStarFullOutline />
+          <TiStarFullOutline className="size-6" />
         ) : rating > 0.5 ? (
-          <TiStarHalfOutline />
+          <TiStarHalfOutline className="size-6" />
         ) : (
           ""
         )}{" "}
       </div>
-      <div className="pt-1">
+      <div className="pt-1 text-yellow-400">
         {rating >= 2 ? (
-          <TiStarFullOutline />
+          <TiStarFullOutline className="size-6" />
         ) : rating - 1 > 0.5 ? (
-          <TiStarHalfOutline />
+          <TiStarHalfOutline className="size-6" />
         ) : (
           ""
         )}{" "}
       </div>
-      <div className="pt-1">
+      <div className="pt-1 text-yellow-400">
         {rating >= 3 ? (
-          <TiStarFullOutline />
+          <TiStarFullOutline className="size-6" />
         ) : rating - 2 > 0.5 ? (
-          <TiStarHalfOutline />
+          <TiStarHalfOutline className="size-6" />
         ) : (
           ""
         )}{" "}
       </div>
-      <div className="pt-1">
+      <div className="pt-1 text-yellow-400">
         {rating >= 4 ? (
-          <TiStarFullOutline />
+          <TiStarFullOutline className="size-6" />
         ) : rating - 3 > 0.5 ? (
-          <TiStarHalfOutline />
+          <TiStarHalfOutline className="size-6" />
         ) : (
           ""
         )}{" "}
       </div>
-      <div className="pt-1">
+      <div className="pt-1 text-yellow-400 ">
         {rating >= 5 ? (
-          <TiStarFullOutline />
+          <TiStarFullOutline className="size-6" />
         ) : rating - 4 > 0.5 ? (
-          <TiStarHalfOutline />
+          <TiStarHalfOutline className="size-6" />
         ) : (
           ""
         )}{" "}
       </div>
-      <div className="pl-2 pb-2">{reviews}</div>
-      <span className="pl-2">Reviews</span>
+      <div className="pl-2 pb-2 text-black pt-1">{reviews}</div>
+      <span className="pl-2 text-black pt-1">Reviews</span>
     </div>
   );
 };
