@@ -3,20 +3,50 @@ import { Product } from "../types/products";
 import Rating from "./Rating";
 import { useRecoilState } from "recoil";
 import { cartItems } from "../atoms";
+import { CartItem } from "../types/cart";
 
 type Props = {
   product: Product;
 };
 
 const ProductItems = (props: Props) => {
-  const { image, name, numReviews, price, rating, slug } = props.product;
-  const [cartItem, setCartItem] = useRecoilState(cartItems);
+  const { image, name, numReviews, price, rating, slug, countInStock } =
+    props.product;
+  const [cartItemArr, setCartItemArr] = useRecoilState(cartItems);
 
   const addToCart = () => {
-    setCartItem((prevItems: Product[]) => [...prevItems, props.product]);
+    const existItem = cartItemArr.find((x) => x.slug === slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    const updatedCartItems = [...cartItem, props.product];
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    if (quantity > countInStock) {
+      alert("Product out of stock");
+      return;
+    }
+
+    if (existItem) {
+      // If the item already exists in the cart, update its quantity
+      setCartItemArr((prevItems) =>
+        prevItems.map((item) =>
+          item.slug === slug ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      // If the item is not in the cart, add it with quantity 1
+      const newItem: CartItem = {
+        image,
+        slug,
+        quantity: 1,
+        countInStock,
+        price,
+        name,
+      };
+      setCartItemArr((prevItems) => [...prevItems, newItem]);
+    }
+
+    // const updatedCartItems = [...cartItem, props.product];
+
+    localStorage.removeItem("cartItems");
+    localStorage.setItem("cartItems", JSON.stringify(cartItemArr));
   };
 
   return (
