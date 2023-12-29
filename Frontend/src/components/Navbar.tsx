@@ -3,11 +3,23 @@ import { PiShoppingCart } from "react-icons/pi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 
 const Navbar = () => {
+  const goToHome = () => {
+    window.location.href = "/";
+  };
+
+  const goToCart = () => {
+    window.location.href = "/cart";
+  };
   return (
     <div>
       <div className="bg-black h-16 flex">
         <div className=" p-3 flex-grow flex items-center">
-          <div className="text-white font-bold text-3xl">ECOM KING</div>
+          <div
+            className="text-white font-bold text-3xl cursor-pointer"
+            onClick={goToHome}
+          >
+            ECOM KING
+          </div>
           <form className="pl-3  flex-grow flex">
             <input
               className="rounded-lg w-full h-10 pl-5"
@@ -24,7 +36,7 @@ const Navbar = () => {
             <IoMdArrowDropdownCircle className="size-6" />
           </li>
           <li className="cursor-pointer">Orders</li>
-          <li className="cursor-pointer flex">
+          <li className="cursor-pointer flex " onClick={goToCart}>
             <PiShoppingCart className="size-7" /> Cart
           </li>
         </ul>
