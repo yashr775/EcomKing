@@ -16,10 +16,10 @@ const CheckoutSteps = () => {
         <div>PlaceOrder</div>
       </div>
 
-      <div className="flex justify-center">
-        <div className="w-3/4 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 ">
+      <div className="flex justify-center pb-10">
+        <div className="w-3/4 bg-gray-200 rounded-full h-2 dark:bg-gray-700 ">
           <div
-            className="bg-yellow-600 h-2.5 rounded-full"
+            className="bg-yellow-600 h-2 rounded-full"
             style={{ width: currProgress }}
           ></div>
         </div>
