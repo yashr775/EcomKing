@@ -16,6 +16,10 @@ const Navbar = () => {
     window.location.href = "/signin";
   };
 
+  const goToSignup = () => {
+    window.location.href = "/signup";
+  };
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Function to toggle the dropdown
@@ -43,7 +47,7 @@ const Navbar = () => {
         </div>
         <ul className="text-white space-x-6 font-bold p-6 flex-grow flex justify-end ">
           <li className="cursor-pointer  ">Light</li>
-          <li className="cursor-pointer flex" onClick={goToSignin}>
+          <li className="cursor-pointer flex" onClick={toggleDropdown}>
             Hello,sign in
             <IoMdArrowDropdownCircle
               className="size-6"
@@ -51,8 +55,8 @@ const Navbar = () => {
             />
             {isDropdownOpen && (
               <ul className="absolute bg-black text-white mt-10  p-4">
-                <li>Account</li>
-                <li>Settings</li>
+                <li onClick={goToSignin}>Sign In</li>
+                <li onClick={goToSignup}>Sign Up</li>
               </ul>
             )}
           </li>
