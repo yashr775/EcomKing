@@ -42,11 +42,10 @@ const ProductItems = (props: Props) => {
       };
       setCartItemArr((prevItems) => [...prevItems, newItem]);
     }
-
-    // const updatedCartItems = [...cartItem, props.product];
-
+    console.log(cartItemArr);
     localStorage.removeItem("cartItems");
     localStorage.setItem("cartItems", JSON.stringify(cartItemArr));
+    alert("Item added successfully");
   };
 
   return (

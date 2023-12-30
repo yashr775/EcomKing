@@ -4,7 +4,9 @@ import { Helmet } from "react-helmet";
 import sampleProducts from "../data";
 import ProductItems from "../components/ProductItems";
 
-const home = () => {
+const Home = () => {
+  // const cartItemArr = useRecoilValue(cartItems);
+
   return (
     <div className="bg-gray-200">
       <Helmet>
@@ -12,6 +14,11 @@ const home = () => {
       </Helmet>
       <Navbar />
       <Slider />
+      {/* {cartItemArr.map((item) => (
+        <div key={item.slug} className="font-bold flex justify-center">
+          {item.name}
+        </div>
+      ))} */}
       <div className="m-4 grid grid-cols-4 gap-4">
         {sampleProducts!.map((product) => {
           return (
@@ -26,4 +33,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

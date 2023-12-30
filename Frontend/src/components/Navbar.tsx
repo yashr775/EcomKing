@@ -1,6 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import { PiShoppingCart } from "react-icons/pi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
+import { useState } from "react";
 
 const Navbar = () => {
   const goToHome = () => {
@@ -9,6 +10,17 @@ const Navbar = () => {
 
   const goToCart = () => {
     window.location.href = "/cart";
+  };
+
+  const goToSignin = () => {
+    window.location.href = "/signin";
+  };
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Function to toggle the dropdown
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
   return (
     <div>
@@ -31,9 +43,18 @@ const Navbar = () => {
         </div>
         <ul className="text-white space-x-6 font-bold p-6 flex-grow flex justify-end ">
           <li className="cursor-pointer  ">Light</li>
-          <li className="cursor-pointer flex">
+          <li className="cursor-pointer flex" onClick={goToSignin}>
             Hello,sign in
-            <IoMdArrowDropdownCircle className="size-6" />
+            <IoMdArrowDropdownCircle
+              className="size-6"
+              onClick={toggleDropdown}
+            />
+            {isDropdownOpen && (
+              <ul className="absolute bg-black text-white mt-10  p-4">
+                <li>Account</li>
+                <li>Settings</li>
+              </ul>
+            )}
           </li>
           <li className="cursor-pointer">Orders</li>
           <li className="cursor-pointer flex " onClick={goToCart}>
