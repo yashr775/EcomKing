@@ -3,13 +3,20 @@ import Navbar from "../components/Navbar";
 import { useRecoilState } from "recoil";
 import { progress } from "../atoms";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Shippingaddresspage = () => {
-  const [progresss, setProgresss] = useRecoilState(progress);
+  const [, setProgresss] = useRecoilState(progress);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setProgresss("25%");
+  }, []);
 
   const handleContinueClick = () => {
-    setProgresss("50%");
-    console.log(progresss);
+    navigate("/paymentpage");
+    // window.location.href = "/paymentpage";
   };
   return (
     <div>
