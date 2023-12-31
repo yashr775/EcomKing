@@ -4,6 +4,7 @@ import Rating from "./Rating";
 import { useRecoilState } from "recoil";
 import { cartItems } from "../atoms";
 import { CartItem } from "../types/cart";
+import { useEffect } from "react";
 
 type Props = {
   product: Product;
@@ -16,20 +17,18 @@ const ProductItems = (props: Props) => {
 
   const addToCart = () => {
     const existItem = cartItemArr.find((x) => x.slug === slug);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-
-    if (quantity > countInStock) {
-      alert("Product out of stock");
-      return;
-    }
+    const updatedCart = [...cartItemArr];
 
     if (existItem) {
       // If the item already exists in the cart, update its quantity
-      setCartItemArr((prevItems) =>
-        prevItems.map((item) =>
-          item.slug === slug ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
+      const updatedItem = { ...existItem, quantity: existItem.quantity + 1 };
+      const itemIndex = updatedCart.findIndex((x) => x.slug === slug);
+      updatedCart[itemIndex] = updatedItem;
+
+      if (updatedItem.quantity > countInStock) {
+        alert("Product out of stock");
+        return;
+      }
     } else {
       // If the item is not in the cart, add it with quantity 1
       const newItem: CartItem = {
@@ -40,14 +39,17 @@ const ProductItems = (props: Props) => {
         price,
         name,
       };
-      setCartItemArr((prevItems) => [...prevItems, newItem]);
+      updatedCart.push(newItem);
     }
-    console.log(cartItemArr);
-    localStorage.removeItem("cartItems");
-    localStorage.setItem("cartItems", JSON.stringify(cartItemArr));
-    alert("Item added successfully");
+    setCartItemArr(updatedCart);
+    console.log(updatedCart);
+    alert("Item updated successfull");
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
+  useEffect(() => {
+    setCartItemArr(JSON.parse(localStorage.getItem("cartItems") ?? ""));
+  }, []);
   return (
     <div>
       <div className="max-w-content max-h-content">
