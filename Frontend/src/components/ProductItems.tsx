@@ -48,7 +48,7 @@ const ProductItems = (props: Props) => {
   };
 
   useEffect(() => {
-    setCartItemArr(JSON.parse(localStorage.getItem("cartItems") ?? ""));
+    setCartItemArr(JSON.parse(localStorage.getItem("cartItems") ?? "[]"));
   }, []);
   return (
     <div>

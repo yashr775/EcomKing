@@ -4,10 +4,12 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { progress } from "../atoms";
+import { useNavigate } from "react-router-dom";
 
 const Paymentmethodpage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(""); // Add state to track selected payment method
   const [, setProgresss] = useRecoilState(progress);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProgresss("50%");
@@ -17,6 +19,10 @@ const Paymentmethodpage = () => {
   const handlePaymentMethodChange = (event: { target: { value: any } }) => {
     const selectedMethod = event.target.value;
     setSelectedPaymentMethod(selectedMethod);
+  };
+
+  const handleContinueClick = () => {
+    navigate("/placeorder");
   };
 
   return (
@@ -54,6 +60,7 @@ const Paymentmethodpage = () => {
           <button
             type="submit"
             className="flex justify-center bg-yellow-500 p-2 rounded-lg hover:bg-blue-800 hover:text-white"
+            onClick={handleContinueClick}
           >
             Continue
           </button>
