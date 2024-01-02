@@ -46,7 +46,10 @@ const Cartpage = () => {
 
   const handleAddClick = (item: CartItem) => {
     const updatedCartItems = cartItemsArr.map((cartItem) => {
-      if (cartItem.slug === item.slug) {
+      if (
+        cartItem.slug === item.slug &&
+        cartItem.quantity < item.countInStock
+      ) {
         return { ...cartItem, quantity: cartItem.quantity + 1 };
       }
       return cartItem;
@@ -62,6 +65,14 @@ const Cartpage = () => {
       }
       return cartItem;
     });
+
+    updateCartData(updatedCartItems);
+  };
+
+  const handleDeleteClick = (item: CartItem) => {
+    const updatedCartItems = cartItemsArr.filter(
+      (cartItem) => cartItem.slug !== item.slug
+    );
 
     updateCartData(updatedCartItems);
   };
@@ -103,7 +114,10 @@ const Cartpage = () => {
                   />
                 </div>
                 <div className="pl-10 pt-6">
-                  <FaTrashAlt />
+                  <FaTrashAlt
+                    onClick={() => handleDeleteClick(item)}
+                    className="cursor-pointer"
+                  />
                 </div>
               </div>
             ))
