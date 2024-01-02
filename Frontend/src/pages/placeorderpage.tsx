@@ -120,7 +120,7 @@ const Placeorderpage = () => {
                     <img src={item.image} alt={item.name} />
                   </div>
                   <div className="text-xl pl-5 pt-5 text-blue-500 underline">
-                    {item.name}
+                    <Link to={`/product/${item.slug}`}>{item.name}</Link>
                   </div>
                   <div className="pl-16 pt-6">{item.quantity}</div>
                   <div className="pl-16 pt-6">${item.price} </div>

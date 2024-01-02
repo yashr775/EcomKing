@@ -3,26 +3,22 @@ import Navbar from "../components/Navbar";
 import { useRecoilState } from "recoil";
 import { cartItems } from "../atoms";
 import { useEffect, useState } from "react";
-import { FaPlusCircle } from "react-icons/fa";
-import { FaCircleMinus } from "react-icons/fa6";
-import { FaTrashAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { CartItem } from "../types/cart";
 
 const Cartpage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cartItemsArr, setCartItemArr] = useRecoilState(cartItems);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
-  console.log(cartItemsArr);
 
   useEffect(() => {
-    // Calculate totalPrice when cartItemsArr changes
     let sum = 0;
     let temp = 0;
     if (cartItemsArr && cartItemsArr.length) {
       for (let i = 0; i < cartItemsArr.length; i++) {
-        sum += cartItemsArr[i].price;
+        sum += cartItemsArr[i].price * cartItemsArr[i].quantity;
         temp += cartItemsArr[i].quantity;
       }
     }
@@ -31,18 +27,43 @@ const Cartpage = () => {
   }, [cartItemsArr]);
 
   const getCartData = () => {
-    const cartArr = JSON.parse(localStorage.getItem("cartItems")!);
+    const cartArr = JSON.parse(localStorage.getItem("cartItems") || "[]");
     setCartItemArr(cartArr);
   };
 
-  console.log(totalPrice);
-  console.log(totalQuantity);
+  const updateCartData = (updatedCartItems: CartItem[]) => {
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    setCartItemArr(updatedCartItems);
+  };
+
   useEffect(() => {
     getCartData();
   }, []);
 
   const handleProceedToCheckout = () => {
     navigate("/shippingaddress");
+  };
+
+  const handleAddClick = (item: CartItem) => {
+    const updatedCartItems = cartItemsArr.map((cartItem) => {
+      if (cartItem.slug === item.slug) {
+        return { ...cartItem, quantity: cartItem.quantity + 1 };
+      }
+      return cartItem;
+    });
+
+    updateCartData(updatedCartItems);
+  };
+
+  const handleMinusClick = (item: CartItem) => {
+    const updatedCartItems = cartItemsArr.map((cartItem) => {
+      if (cartItem.slug === item.slug && cartItem.quantity > 1) {
+        return { ...cartItem, quantity: cartItem.quantity - 1 };
+      }
+      return cartItem;
+    });
+
+    updateCartData(updatedCartItems);
   };
 
   return (
@@ -67,13 +88,19 @@ const Cartpage = () => {
                 <div className="w-20">
                   <img src={item.image} alt={item.name}></img>
                 </div>
-                <div className="pl-10 pt-5 text-xl itens-center cursor-pointer text-blue-500">
-                  {item.name}{" "}
+                <div className="pl-10 pt-5 text-xl items-center cursor-pointer text-blue-500">
+                  <Link to={`/product/${item.slug}`}>{item.name} </Link>
                 </div>
                 <div className="px-20 pt-5 text-lg flex">
-                  <FaCircleMinus className="pt-2 size-6" />
+                  <FaMinusCircle
+                    className="pt-2 size-6"
+                    onClick={() => handleMinusClick(item)}
+                  />
                   {item.quantity}
-                  <FaPlusCircle className="pt-2 size-6" />
+                  <FaPlusCircle
+                    className="pt-2 size-6"
+                    onClick={() => handleAddClick(item)}
+                  />
                 </div>
                 <div className="pl-10 pt-6">
                   <FaTrashAlt />
