@@ -1,7 +1,7 @@
 import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
 import { useRecoilState } from "recoil";
-import { progress } from "../atoms";
+import { progress, shippingAddress } from "../atoms";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
@@ -9,10 +9,12 @@ import { shippingaddress } from "../types/shippingAddress";
 
 const Shippingaddresspage = () => {
   const [, setProgresss] = useRecoilState(progress);
+  const [shippingAddressValue, setShippingAddressValue] =
+    useRecoilState(shippingAddress);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setProgresss("25%");
+    setProgresss("50%");
   }, []);
 
   const [formData, setFormData] = useState<shippingaddress>({
@@ -45,8 +47,10 @@ const Shippingaddresspage = () => {
       country,
     };
 
-    localStorage.setItem("shippingAdress", JSON.stringify(shippingObject));
+    setShippingAddressValue(shippingObject);
 
+    localStorage.setItem("shippingAddress", JSON.stringify(shippingObject));
+    console.log(shippingAddressValue);
     navigate("/paymentpage");
   };
   return (

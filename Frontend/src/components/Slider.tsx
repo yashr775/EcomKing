@@ -50,7 +50,7 @@ const Slider = () => {
 
   return (
     <div className="bg-gray-200 h-screen w-screen">
-      <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group flex justify-center">
+      <div className="max-w-[1400px] h-[780px] w-full m-auto py-4 px-4 relative group flex justify-center">
         <div
           style={{
             backgroundImage: `url(${slides[currentIndex].url})`,

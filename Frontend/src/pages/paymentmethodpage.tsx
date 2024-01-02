@@ -3,16 +3,17 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { progress } from "../atoms";
+import { paymentMethod, progress } from "../atoms";
 import { useNavigate } from "react-router-dom";
 
 const Paymentmethodpage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(""); // Add state to track selected payment method
   const [, setProgresss] = useRecoilState(progress);
+  const [, setPaymentMethod] = useRecoilState(paymentMethod);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setProgresss("50%");
+    setProgresss("75%");
   }, []);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,6 +23,11 @@ const Paymentmethodpage = () => {
   };
 
   const handleContinueClick = () => {
+    setPaymentMethod(selectedPaymentMethod);
+    localStorage.setItem(
+      "paymentMethod",
+      JSON.stringify(selectedPaymentMethod)
+    );
     navigate("/placeorder");
   };
 
