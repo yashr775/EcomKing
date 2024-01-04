@@ -104,12 +104,12 @@ const Cartpage = () => {
                 </div>
                 <div className="px-20 pt-5 text-lg flex">
                   <FaMinusCircle
-                    className="pt-2 size-6"
+                    className="pt-2 size-6 cursor-pointer"
                     onClick={() => handleMinusClick(item)}
                   />
                   {item.quantity}
                   <FaPlusCircle
-                    className="pt-2 size-6"
+                    className="pt-2 size-6 cursor-pointer"
                     onClick={() => handleAddClick(item)}
                   />
                 </div>
