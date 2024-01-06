@@ -7,8 +7,6 @@ import jwt from "jsonwebtoken"
 require('dotenv').config({ path: '../.env' });
 const JWT_SECRET = process.env.JWT_SECRET
 
-console.log(JWT_SECRET)
-
 const prisma = new PrismaClient();
 
 

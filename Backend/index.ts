@@ -9,7 +9,7 @@ app.use(express.json());
 
 const PORT = 5000;
 
-app.use('/api/user',require("./routes/userRouter"));
+app.use('/api/user',require("./src/routes/userRouter"));
 
 app.listen(PORT,()=>{
     console.log(`App is listening on port ${PORT}`)
