@@ -1,11 +1,14 @@
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import { Helmet } from "react-helmet";
-import sampleProducts from "../data";
+// import sampleProducts from "../data";
 import ProductItems from "../components/ProductItems";
+import { useGetProduct } from "../hooks/productHooks";
 
 const Home = () => {
   // const cartItemArr = useRecoilValue(cartItems);
+
+  const sampleProducts = useGetProduct();
 
   return (
     <div className="bg-gray-200">
