@@ -35,7 +35,6 @@ const Signup = () => {
         setPasswordMismatch(true);
         return;
       }
-      console.log("success2");
       const response = await fetch(
         "http://localhost:5000/api/user/createuser",
         {
@@ -48,11 +47,9 @@ const Signup = () => {
       );
       const json = await response.json();
 
-      console.log("success1");
       if (json.success === true) {
         localStorage.setItem("auth-token", json.token);
       }
-      // Continue with the form submission logic...
     } catch (error) {
       console.log("Some error occurred");
       console.error("Internal serverError :: " + error);

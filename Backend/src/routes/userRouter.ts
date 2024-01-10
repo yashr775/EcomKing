@@ -88,7 +88,7 @@ router.post("/login", async (req:Request,res:Response)=>{
         const  validationResult  = loginUserSchema.safeParse(signinObj);
       
         if(!validationResult.success){
-          res.status(400).send(fromZodError(validationResult.error))
+          return res.status(400).send(fromZodError(validationResult.error))
         }
       
         const user = await prisma.user.findUnique({where:{email}})
