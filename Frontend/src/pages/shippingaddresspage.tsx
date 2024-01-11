@@ -9,6 +9,7 @@ import { shippingaddress } from "../types/shippingAddress";
 
 const Shippingaddresspage = () => {
   const [, setProgresss] = useRecoilState(progress);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [shippingAddressValue, setShippingAddressValue] =
     useRecoilState(shippingAddress);
   const navigate = useNavigate();
@@ -50,7 +51,6 @@ const Shippingaddresspage = () => {
     setShippingAddressValue(shippingObject);
 
     localStorage.setItem("shippingAddress", JSON.stringify(shippingObject));
-    console.log(shippingAddressValue);
     navigate("/paymentpage");
   };
   return (

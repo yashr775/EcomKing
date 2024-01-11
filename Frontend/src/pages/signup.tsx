@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../atoms";
+import { useRecoilState } from "recoil";
 
 interface FormData {
   name: string;
@@ -11,6 +13,10 @@ interface FormData {
 }
 
 const Signup = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isAuthenticatedVal, setIsAuthenticated] =
+    useRecoilState(isAuthenticated);
+
   const [formData, setFormdata] = useState<FormData>({
     name: "",
     email: "",
@@ -49,6 +55,7 @@ const Signup = () => {
 
       if (json.success === true) {
         localStorage.setItem("auth-token", json.token);
+        setIsAuthenticated(true);
       }
     } catch (error) {
       console.log("Some error occurred");

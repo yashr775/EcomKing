@@ -21,11 +21,16 @@ const defaultShippingAddress: shippingaddress = {
 };
 
 export const shippingAddress = atom<shippingaddress>({
-  key: "shippingAddressKey",
+  key: "shippingAddress",
   default: defaultShippingAddress,
 });
 
 export const paymentMethod = atom<string>({
-  key: "paymentMethodKey",
+  key: "paymentMethod",
   default: "",
+});
+
+export const isAuthenticated = atom<boolean>({
+  key: "isAuthenticated",
+  default: false,
 });

@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useRecoilState } from "recoil";
+import { isAuthenticated } from "../atoms";
 
 interface FormData {
   email: string;
@@ -8,6 +10,10 @@ interface FormData {
 }
 
 const Signin = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isAuthenticatedVal, setIsAuthenticated] =
+    useRecoilState(isAuthenticated);
+
   const goToSignup = () => {
     window.location.href = "/signup";
   };
@@ -39,6 +45,8 @@ const Signin = () => {
       const json = await response.json();
       console.log(response);
       if (json.success === true) {
+        console.log("hgdghdfghdfgjdfghdsfghdfgdfg");
+        setIsAuthenticated(true);
         localStorage.setItem("auth-token", json.token);
       }
     } catch (error) {
