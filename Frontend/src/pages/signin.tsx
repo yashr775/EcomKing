@@ -45,8 +45,6 @@ const Signin = () => {
       const json = await response.json();
       console.log(response);
       if (json.success === true) {
-        console.log("hgdghdfghdfgjdfghdsfghdfgdfg");
-        setIsAuthenticated(true);
         localStorage.setItem("auth-token", json.token);
       }
     } catch (error) {

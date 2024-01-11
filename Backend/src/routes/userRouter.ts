@@ -4,6 +4,7 @@ import { fromZodError} from "zod-validation-error"
 import { PrismaClient } from '@prisma/client'
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import isAuth from "../../middleware/isAuth";
 require('dotenv').config({ path: '../.env' });
 const JWT_SECRET = process.env.JWT_SECRET ||"some random secret"; 
 
@@ -117,8 +118,27 @@ router.post("/login", async (req:Request,res:Response)=>{
     }finally{
            prisma.$disconnect
     }
- 
-
 })
+
+router.get("/getuserbyid",isAuth, async (req:Request,res:Response)=>{
+
+    try {
+        
+        const id =req.user._id;
+        console.log(id)
+        const user = await prisma.user.findUnique({where:{id}});
+    
+        res.status(203).json(user);
+    
+    } catch (error) {
+        console.log("Some error occured");
+        console.log("Internal server error :: "+ error);
+        return res.status(403).send("Internal server error");
+    }
+    finally{
+        prisma.$disconnect
+    }
+    
+        })
 
 module.exports = router

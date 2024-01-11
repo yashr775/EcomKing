@@ -54,7 +54,6 @@ const Signup = () => {
       const json = await response.json();
 
       if (json.success === true) {
-        localStorage.setItem("auth-token", json.token);
         setIsAuthenticated(true);
       }
     } catch (error) {
