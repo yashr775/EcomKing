@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
-import { useRecoilState } from "recoil";
-import { cartItems } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartItems, theme } from "../atoms";
 import { useEffect, useState } from "react";
 import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ const Cartpage = () => {
   const [cartItemsArr, setCartItemArr] = useRecoilState(cartItems);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const themeVal = useRecoilValue(theme);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,18 +80,38 @@ const Cartpage = () => {
   };
 
   return (
-    <div>
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black" : "bg-gray-200"
+      } w-screen h-screen`}
+    >
       <Helmet>
         <title>Cart Page</title>
       </Helmet>
       <Navbar />
-      <div className="text-5xl font-bold flex justify-center mt-10">
+      <div
+        className={`${
+          themeVal === "Dark" ? "bg-black text-white" : "bg-gray-200 text-black"
+        } text-5xl font-bold flex justify-center mt-10`}
+      >
         Shopping Cart
       </div>
-      <div className="grid justify-items-center grid-cols-2 space-x-2 mt-10">
+      <div
+        className={`${
+          themeVal === "Dark" ? "bg-black" : "bg-gray-200"
+        } grid justify-items-center grid-cols-2 space-x-2 mt-10`}
+      >
         <div className="main border border-solid w-3/4 h-fit m-4">
           {cartItemsArr === null || cartItemsArr.length === 0 ? (
-            <div>No Items Available </div>
+            <div
+              className={`${
+                themeVal === "Dark"
+                  ? "bg-black text-white"
+                  : "bg-gray-200 text-black"
+              }`}
+            >
+              No Items Available{" "}
+            </div>
           ) : (
             cartItemsArr.map((item) => (
               <div
@@ -104,27 +126,44 @@ const Cartpage = () => {
                 </div>
                 <div className="px-20 pt-5 text-lg flex">
                   <FaMinusCircle
-                    className="pt-2 size-6 cursor-pointer"
+                    className="bg-white pt-2 size-6 cursor-pointer"
                     onClick={() => handleMinusClick(item)}
                   />
-                  {item.quantity}
+                  <span
+                    className={`${
+                      themeVal === "Dark" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {item.quantity}
+                  </span>
+
                   <FaPlusCircle
-                    className="pt-2 size-6 cursor-pointer"
+                    className="bg-white pt-2 size-6 cursor-pointer"
                     onClick={() => handleAddClick(item)}
                   />
                 </div>
-                <div className="pl-10 pt-6">
+                <div className=" pl-10 pt-6">
                   <FaTrashAlt
                     onClick={() => handleDeleteClick(item)}
-                    className="cursor-pointer"
+                    className="bg-white cursor-pointer"
                   />
                 </div>
               </div>
             ))
           )}
         </div>
-        <div className="border border-solid w-fit h-fit">
-          <div className="text-3xl  font-semibold p-4">
+        <div
+          className={`${
+            themeVal === "Dark" ? "bg-black" : "bg-gray-200"
+          } border border-solid w-fit h-fit`}
+        >
+          <div
+            className={`${
+              themeVal === "Dark"
+                ? "bg-black text-white"
+                : "bg-gray-200 text-black "
+            } text-3xl  font-semibold p-4`}
+          >
             Subtotal ({totalQuantity} items) : ${totalPrice}
           </div>
           <hr className=""></hr>

@@ -2,8 +2,12 @@ import { CiSearch } from "react-icons/ci";
 import { PiShoppingCart } from "react-icons/pi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { useState } from "react";
+import { theme } from "../atoms";
+import { useRecoilState } from "recoil";
 
 const Navbar = () => {
+  const [themeMode, setThemeMode] = useRecoilState(theme);
+
   const goToHome = () => {
     window.location.href = "/";
   };
@@ -18,6 +22,14 @@ const Navbar = () => {
 
   const goToSignup = () => {
     window.location.href = "/signup";
+  };
+
+  const handleThemeClick = () => {
+    if (themeMode === "Light") {
+      setThemeMode("Dark");
+    } else {
+      setThemeMode("Light");
+    }
   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -46,7 +58,9 @@ const Navbar = () => {
           </form>
         </div>
         <ul className="text-white space-x-6 font-bold p-6 flex-grow flex justify-end ">
-          <li className="cursor-pointer  ">Light</li>
+          <li className="cursor-pointer  " onClick={handleThemeClick}>
+            {themeMode}
+          </li>
           <li className="cursor-pointer flex" onClick={toggleDropdown}>
             Hello,sign in
             <IoMdArrowDropdownCircle

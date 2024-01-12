@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { theme } from "../atoms";
+import { useRecoilValue } from "recoil";
 
 const Slider = () => {
+  const themeVal = useRecoilValue(theme);
+
   const slides = [
     { url: "../images/tshirt1.jpg" },
     { url: "../images/tshirt2.jpg" },
@@ -49,7 +53,11 @@ const Slider = () => {
   }, [currentIndex]);
 
   return (
-    <div className="bg-gray-200 h-screen w-screen">
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black" : "bg-gray-200"
+      } h-screen w-screen`}
+    >
       <div className="max-w-[1400px] h-[780px] w-full m-auto py-4 px-4 relative group flex justify-center">
         <div
           style={{

@@ -34,3 +34,5 @@ export const isAuthenticated = atom<boolean>({
   key: "isAuthenticated",
   default: false,
 });
+
+export const theme = atom<string>({ key: "theme", default: "Light" });

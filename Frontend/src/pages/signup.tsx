@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import { isAuthenticated } from "../atoms";
-import { useRecoilState } from "recoil";
+import { isAuthenticated, theme } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 interface FormData {
   name: string;
@@ -16,6 +16,7 @@ const Signup = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isAuthenticatedVal, setIsAuthenticated] =
     useRecoilState(isAuthenticated);
+  const themeVal = useRecoilValue(theme);
 
   const [formData, setFormdata] = useState<FormData>({
     name: "",
@@ -63,16 +64,29 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black" : "bg-gray-200"
+      } w-screen h-screen`}
+    >
       <Helmet>
         <title>Sign Up </title>
       </Helmet>
       <Navbar />
-      <div className="text-5xl font-semibold flex justify-center mt-10">
+      <div
+        className={`${
+          themeVal === "Dark" ? "text-white" : "text-black"
+        } text-5xl font-semibold flex justify-center mt-10`}
+      >
         Sign Up
       </div>
       <form className="mt-10 p-4" onSubmit={handleSubmitClick}>
-        <label className="text-xl flex justify-center" htmlFor="name">
+        <label
+          className={` ${
+            themeVal === "Dark" ? "text-white " : "text-black"
+          } text-xl flex justify-center`}
+          htmlFor="name"
+        >
           Name
         </label>
         <input
@@ -82,7 +96,13 @@ const Signup = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">Email</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          Email
+        </label>
         <input
           className="w-1/4 h-10 rounded-lg border mx-auto border-black flex justify-center"
           name="email"
@@ -90,7 +110,13 @@ const Signup = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">Password</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          Password
+        </label>
         <input
           className="w-1/4 h-10 rounded-lg border border-black mx-auto flex justify-center"
           type="password"
@@ -99,7 +125,11 @@ const Signup = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
           Confirm Password
         </label>
         <input
@@ -125,7 +155,11 @@ const Signup = () => {
         </button>
       </form>
       <div className="flex justify-center">
-        <span>Already have an account ?</span>
+        <span
+          className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}
+        >
+          Already have an account ?
+        </span>
         <span className="pl-2 text-blue-500 underline cursor-pointer">
           <Link to="/signin">Sign In</Link>
         </span>
