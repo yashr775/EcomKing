@@ -1,7 +1,7 @@
 import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
-import { useRecoilState } from "recoil";
-import { progress, shippingAddress } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { progress, shippingAddress, theme } from "../atoms";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
@@ -12,6 +12,7 @@ const Shippingaddresspage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [shippingAddressValue, setShippingAddressValue] =
     useRecoilState(shippingAddress);
+  const themeVal = useRecoilValue(theme);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,17 +55,37 @@ const Shippingaddresspage = () => {
     navigate("/paymentpage");
   };
   return (
-    <div>
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black" : "bg-white"
+      } w-screen h-screen
+      `}
+    >
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
       <Navbar />
       <CheckoutSteps />
-      <div className="flex justify-center text-5xl font-semibold">
+      <div
+        className={`${
+          themeVal === "Dark" ? "text-white" : "text-black"
+        } flex justify-center text-5xl font-semibold`}
+      >
         Shipping Address
       </div>
-      <form className="mt-10  p-4 mb-10" onSubmit={handleContinueClick}>
-        <label className="text-xl flex justify-center ">Full Name</label>
+      <form
+        className={`${
+          themeVal === "Dark" ? "bg-black" : "bg-white"
+        } mt-10  p-4 mb-10 `}
+        onSubmit={handleContinueClick}
+      >
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center`}
+        >
+          Full Name
+        </label>
         <input
           className=" w-1/4 h-10 rounded-lg border mx-auto border-black flex justify-center"
           name="fullname"
@@ -72,7 +93,13 @@ const Shippingaddresspage = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">Address</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          Address
+        </label>
         <input
           className=" w-1/4 h-10 rounded-lg border mx-auto border-black flex justify-center"
           name="address"
@@ -80,7 +107,13 @@ const Shippingaddresspage = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">City</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          City
+        </label>
         <input
           className=" w-1/4 h-10 rounded-lg border border-black mx-auto flex justify-center"
           name="city"
@@ -88,7 +121,13 @@ const Shippingaddresspage = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">Postal Code</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          Postal Code
+        </label>
         <input
           className=" w-1/4 h-10 rounded-lg border border-black mx-auto flex justify-center"
           name="postalcode"
@@ -96,7 +135,13 @@ const Shippingaddresspage = () => {
           onChange={handleChange}
           required
         ></input>
-        <label className="text-xl flex justify-center mt-10">Country</label>
+        <label
+          className={`${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } text-xl flex justify-center mt-10`}
+        >
+          Country
+        </label>
         <input
           className=" w-1/4 h-10 rounded-lg border border-black mx-auto flex justify-center"
           name="country"

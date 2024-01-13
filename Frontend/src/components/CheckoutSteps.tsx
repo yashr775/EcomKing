@@ -1,19 +1,32 @@
 import { useRecoilValue } from "recoil";
-import { progress } from "../atoms";
+import { progress, theme } from "../atoms";
 import { useEffect } from "react";
 
 const CheckoutSteps = () => {
   const currProgress = useRecoilValue(progress);
+  const themeVal = useRecoilValue(theme);
 
   useEffect(() => {}, [currProgress]);
 
   return (
-    <div>
-      <div className="flex justify-center space gap-x-60 mt-20">
-        <div>Sign In</div>
-        <div>Shipping</div>
-        <div>Payment</div>
-        <div>PlaceOrder</div>
+    <div className={`${themeVal === "Dark" ? "bg-black" : "bg-white"}`}>
+      <div
+        className={`${
+          themeVal === "Dark" ? "bg-black" : "bg-white"
+        } flex justify-center space gap-x-60 mt-20`}
+      >
+        <div className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}>
+          Sign In
+        </div>
+        <div className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}>
+          Shipping
+        </div>
+        <div className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}>
+          Payment
+        </div>
+        <div className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}>
+          PlaceOrder
+        </div>
       </div>
 
       <div className="flex justify-center pb-10">

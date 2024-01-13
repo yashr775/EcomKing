@@ -39,7 +39,7 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
   return (
-    <div>
+    <div className={`${themeMode === "Dark" ? "bg-black" : "text-white"}`}>
       <div className="bg-black h-16 flex">
         <div className=" p-3 flex-grow flex items-center">
           <div
