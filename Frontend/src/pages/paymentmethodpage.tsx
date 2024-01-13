@@ -2,14 +2,16 @@ import { Helmet } from "react-helmet";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { paymentMethod, progress } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { paymentMethod, progress, theme } from "../atoms";
 import { useNavigate } from "react-router-dom";
 
 const Paymentmethodpage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(""); // Add state to track selected payment method
   const [, setProgresss] = useRecoilState(progress);
   const [, setPaymentMethod] = useRecoilState(paymentMethod);
+  const themeVal = useRecoilValue(theme);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,14 +34,22 @@ const Paymentmethodpage = () => {
   };
 
   return (
-    <div>
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black" : "bg-white-200"
+      } w-screen h-screen`}
+    >
       <Helmet>
         <title>Payment Page</title>
       </Helmet>
       <Navbar />
       <CheckoutSteps />
       <div className=" mt-15">
-        <div className=" flex justify-center text-5xl font-semibold">
+        <div
+          className={` ${
+            themeVal === "Dark" ? "text-white" : "text-black"
+          } flex justify-center text-5xl font-semibold`}
+        >
           Payment Method
         </div>
         <div className="flex justify-center mt-5">
@@ -50,7 +60,11 @@ const Paymentmethodpage = () => {
             onChange={handlePaymentMethodChange}
             className="flex pr-4"
           ></input>
-          PayPal
+          <span
+            className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}
+          >
+            PayPal
+          </span>
         </div>
         <div className="flex justify-center mt-5">
           <input
@@ -60,7 +74,11 @@ const Paymentmethodpage = () => {
             checked={selectedPaymentMethod === "Stripe"} // Set checked based on state
             onChange={handlePaymentMethodChange}
           ></input>
-          Stripe
+          <span
+            className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}
+          >
+            Stripe
+          </span>
         </div>
         <div className="flex justify-center mt-5">
           <button

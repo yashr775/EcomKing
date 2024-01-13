@@ -1,7 +1,7 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
-import { progress } from "../atoms";
+import { progress, theme } from "../atoms";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { shippingaddress } from "../types/shippingAddress";
@@ -10,6 +10,7 @@ import { CartItem } from "../types/cart";
 
 const Placeorderpage = () => {
   const [, setProgress] = useRecoilState(progress);
+  const themeVal = useRecoilValue(theme);
 
   useEffect(() => {
     setProgress("100%");
@@ -70,13 +71,21 @@ const Placeorderpage = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      className={`${
+        themeVal === "Dark" ? "bg-black text-white" : "bg-white text-black"
+      } w-screen h-full `}
+    >
       <Helmet>
         <title>Preview Order</title>
       </Helmet>
       <Navbar />
       <CheckoutSteps />
-      <div className="text-5xl font-bold flex justify-center m-5">
+      <div
+        className={`${
+          themeVal === "Dark" ? "text-white" : "text-black"
+        } text-5xl font-bold flex justify-center m-5`}
+      >
         Preview Order
       </div>
       <div className="flex justify-center w-screen">
