@@ -11,11 +11,10 @@ const isAuth = (req:Request ,res:Response ,next:NextFunction) => {
 
     try {
         const token = req.header("auth-token");
-         console.log(token)
+         
         if(!token){
             return res.status(400).send("Invalid Token");
         }
-          console.log("1");
         const data  = jwt.verify(token,JWT_SECRET) as JwtPayload
         console.log(data)
         req.user = data.user;

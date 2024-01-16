@@ -26,6 +26,17 @@ router.post("/addshippingaddress",isAuth,async (req:Request,res:Response)=>{
     }
 })
 
+router.delete("/deleteallshippingaddress",isAuth,async (req:Request,res:Response) => {
+    const userId = req.user._id;
+    console.log(userId)
+
+    const shippingAddress = await prisma.shippingAddress.deleteMany({where:{userId}})
+   
+    res.status(200).json(shippingAddress);
+})
+
+
+
 
 // router.post("/addrouter",isAuth,(req:Request,res:Response) =>{
 
