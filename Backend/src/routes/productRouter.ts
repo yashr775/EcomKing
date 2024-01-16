@@ -38,6 +38,53 @@ try {
     
 })
 
+router.post("/addmultipleproducts", isAuth,async (req: Request, res: Response) => {
+    try {
+      const id = req.user._id;
+  
+      const user = await prisma.user.findUnique({ where: { id } });
+  
+      if (!user || !user.isAdmin) {
+        return res.status(403).send("Unauthorized");
+      }
+  
+      // Array of products in the request body
+      const productsData = req.body as Array<{
+        name: string;
+        slug: string;
+        image: string;
+        brand: string;
+        category: string;
+        description: string;
+        price: number;
+        countInStock: number;
+        rating: number;
+        numReviews: number;
+      }>;
+  
+      // Create an array to store the created products
+      const createdProducts = [];
+  
+      // Loop through each product in the request body and create it
+      for (const productData of productsData) {
+        const createdProduct = await prisma.products.create({
+          data: {
+            ...productData,
+          },
+        });
+        createdProducts.push(createdProduct);
+      }
+  
+      return res.status(200).json(createdProducts);
+    } catch (error) {
+      console.log("Internal server error");
+      console.error("Internal server error :: " + error);
+      return res.status(500).send("Some error occurred");
+    } finally {
+      await prisma.$disconnect();
+    }
+  });
+
 router.get("/getproductsbyslug/:slug",async (req:Request,res:Response) => {
 
     try {

@@ -38,6 +38,7 @@ CREATE TABLE "ShippingAddress" (
     "city" TEXT NOT NULL,
     "postalcode" TEXT NOT NULL,
     "country" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
 
     CONSTRAINT "ShippingAddress_pkey" PRIMARY KEY ("id")
 );
@@ -89,7 +90,7 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "Products_slug_key" ON "Products"("slug");
 
 -- AddForeignKey
-ALTER TABLE "Orders" ADD CONSTRAINT "Orders_shippingAddressId_fkey" FOREIGN KEY ("shippingAddressId") REFERENCES "ShippingAddress"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ShippingAddress" ADD CONSTRAINT "ShippingAddress_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Orders" ADD CONSTRAINT "Orders_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

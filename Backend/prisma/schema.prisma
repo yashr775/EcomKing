@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-    id        Int      @id @default(autoincrement())
-    email     String   @unique
-    name      String?
-    password  String
-    isAdmin   Boolean  @default(false)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    Orders    Orders[]
+    id              Int               @id @default(autoincrement())
+    email           String            @unique
+    name            String?
+    password        String
+    isAdmin         Boolean           @default(false)
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    Orders          Orders[]
+    ShippingAddress ShippingAddress[]
 }
 
 model Products {
@@ -36,13 +37,14 @@ model Products {
 }
 
 model ShippingAddress {
-    id         Int      @id @default(autoincrement())
+    id         Int    @id @default(autoincrement())
+    user       User   @relation(fields: [userId], references: [id])
     fullname   String
     address    String
     city       String
     postalcode String
     country    String
-    Orders     Orders[]
+    userId     Int
 }
 
 model PaymentResult {
@@ -54,19 +56,18 @@ model PaymentResult {
 }
 
 model Orders {
-    id              String          @id @default(dbgenerated()) @db.Uuid
-    orderItems      OrderItem[]
-    shippingAddress ShippingAddress @relation(fields: [shippingAddressId], references: [id])
-    user            User            @relation(fields: [userId], references: [id])
-    paymentMethod   String
-    paymentResult   PaymentResult   @relation(fields: [paymentResultId], references: [id])
-    itemsPrice      Float
-    shippingPrice   Float
-    taxPrice        Float
-    totalPrice      Float
-    isPaid          Boolean
-    paidAt          DateTime
-    isDelivered     Boolean         @default(false)
+    id            String        @id @default(dbgenerated()) @db.Uuid
+    orderItems    OrderItem[]
+    user          User          @relation(fields: [userId], references: [id])
+    paymentMethod String
+    paymentResult PaymentResult @relation(fields: [paymentResultId], references: [id])
+    itemsPrice    Float
+    shippingPrice Float
+    taxPrice      Float
+    totalPrice    Float
+    isPaid        Boolean
+    paidAt        DateTime
+    isDelivered   Boolean       @default(false)
 
     shippingAddressId Int
     userId            Int
