@@ -16,7 +16,6 @@ const isAuth = (req:Request ,res:Response ,next:NextFunction) => {
             return res.status(400).send("Invalid Token");
         }
         const data  = jwt.verify(token,JWT_SECRET) as JwtPayload
-        console.log(data)
         req.user = data.user;
 
         next();

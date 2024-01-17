@@ -47,36 +47,27 @@ model ShippingAddress {
     userId     Int
 }
 
-model PaymentResult {
-    id           Int      @id @default(autoincrement())
-    status       String
-    updateTime   String?
-    emailAddress String?
-    Orders       Orders[]
-}
-
 model Orders {
-    id            String        @id @default(dbgenerated()) @db.Uuid
+    id            String      @id
+    createdAt     DateTime    @default(now())
     orderItems    OrderItem[]
-    user          User          @relation(fields: [userId], references: [id])
+    user          User        @relation(fields: [userId], references: [id])
     paymentMethod String
-    paymentResult PaymentResult @relation(fields: [paymentResultId], references: [id])
     itemsPrice    Float
     shippingPrice Float
     taxPrice      Float
     totalPrice    Float
-    isPaid        Boolean
-    paidAt        DateTime
-    isDelivered   Boolean       @default(false)
+    isPaid        Boolean     @default(false)
+    paidAt        DateTime?
+    isDelivered   Boolean     @default(false)
 
     shippingAddressId Int
     userId            Int
-    paymentResultId   Int
 }
 
 model OrderItem {
-    id        String   @id @default(dbgenerated()) @db.Uuid
-    orderId   String   @db.Uuid
+    id        String   @id
+    orderId   String
     productId Int
     quantity  Int
     order     Orders   @relation(fields: [orderId], references: [id])

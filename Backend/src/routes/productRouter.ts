@@ -38,15 +38,15 @@ try {
     
 })
 
-router.post("/addmultipleproducts", isAuth,async (req: Request, res: Response) => {
+router.post("/addmultipleproducts",async (req: Request, res: Response) => {
     try {
-      const id = req.user._id;
+    //   const id = req.user._id;
   
-      const user = await prisma.user.findUnique({ where: { id } });
+    //   const user = await prisma.user.findUnique({ where: { id } });
   
-      if (!user || !user.isAdmin) {
-        return res.status(403).send("Unauthorized");
-      }
+    //   if (!user || !user.isAdmin) {
+    //     return res.status(403).send("Unauthorized");
+    //   }
   
       // Array of products in the request body
       const productsData = req.body as Array<{
