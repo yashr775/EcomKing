@@ -66,12 +66,12 @@ model Orders {
 }
 
 model OrderItem {
-    id        String   @id
-    orderId   String
-    productId Int
-    quantity  Int
-    order     Orders   @relation(fields: [orderId], references: [id])
-    product   Products @relation(fields: [productId], references: [id])
+    id          String   @id
+    orderId     String
+    productSlug String
+    quantity    Int
+    order       Orders   @relation(fields: [orderId], references: [id])
+    product     Products @relation(fields: [productSlug], references: [slug])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

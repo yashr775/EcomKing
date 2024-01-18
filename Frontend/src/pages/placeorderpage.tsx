@@ -7,10 +7,12 @@ import { Helmet } from "react-helmet";
 import { shippingaddress } from "../types/shippingAddress";
 import { Link } from "react-router-dom";
 import { CartItem } from "../types/cart";
+import { useNavigate } from "react-router-dom";
 
 const Placeorderpage = () => {
   const [, setProgress] = useRecoilState(progress);
   const themeVal = useRecoilValue(theme);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProgress("100%");
@@ -64,6 +66,13 @@ const Placeorderpage = () => {
       }
       setShipping(tempShipping);
     }
+  };
+
+  const handlePlaceOrderClick = () => {
+    // const token = localStorage.getItem("authToken");
+    // const cartItems = JSON.parse(localStorage.getIem("cartItems"));
+
+    navigate("/orderpage");
   };
 
   useEffect(() => {
@@ -162,7 +171,10 @@ const Placeorderpage = () => {
             <hr></hr>
           </div>
           <div className="m-5">
-            <button className="w-full h-full bg-yellow-500 rounded-md hover:bg-blue-800 hover:text-white">
+            <button
+              className="w-full h-full bg-yellow-500 rounded-md hover:bg-blue-800 hover:text-white"
+              onClick={handlePlaceOrderClick}
+            >
               Place Order
             </button>
           </div>

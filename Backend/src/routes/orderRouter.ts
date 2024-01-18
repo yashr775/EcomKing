@@ -78,6 +78,7 @@ router.post("/placeorder", isAuth, async (req: Request, res: Response) => {
       const newUuid: string = uuidv4();
 console.log(newUuid);
       const order = await prisma.orders.create({
+        // @ts-ignore
         data: {
             id:newUuid,
           userId,
@@ -96,7 +97,7 @@ console.log(newUuid);
       await prisma.orderItem.createMany({
         data: orderItems.map((item: any) => ({
             id:uuidv4(),
-          productId: item.productId,
+          productSlug: item.productSlug,
           quantity: item.quantity,
           orderId: order.id,
         })),

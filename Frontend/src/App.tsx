@@ -9,6 +9,7 @@ import Shippingaddresspage from "./pages/shippingaddresspage";
 import Paymentmethodpage from "./pages/paymentmethodpage";
 import Placeorderpage from "./pages/placeorderpage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Orderpage from "./pages/orderpage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/placeOrder" element={<Placeorderpage />} />
             <Route path="/paymentpage" element={<Paymentmethodpage />} />
             <Route path="/shippingaddress" element={<Shippingaddresspage />} />
+            <Route path="/order:orderId" element={<Orderpage />} />
           </Route>
         </Routes>
       </Router>
