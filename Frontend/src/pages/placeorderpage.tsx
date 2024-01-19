@@ -31,9 +31,10 @@ const Placeorderpage = () => {
   );
 
   const [paymentMethod, setPaymentMethod] = useState();
-  const [sum, setSum] = useState<number>(0);
-  const [tax, setTax] = useState<number>(0);
-  const [shipping, setShipping] = useState<number>(0);
+  const [sum, setSum] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const getDatas = () => {
@@ -65,12 +66,20 @@ const Placeorderpage = () => {
         tempShipping = 0.1 * tempSum;
       }
       setShipping(tempShipping);
+      setTotalPrice(tempSum + tempTax + tempShipping);
     }
   };
 
   const handlePlaceOrderClick = () => {
-    // const token = localStorage.getItem("authToken");
-    // const cartItems = JSON.parse(localStorage.getIem("cartItems"));
+    const token = localStorage.getItem("authToken");
+    const cartItems = JSON.parse(
+      localStorage.getIem("cartItems")
+    ) as CartItem[];
+
+    const orderItems = cartItems.map((cartItem) => ({
+      productSlug: cartItem.slug,
+      quantity: cartItem.quantity,
+    }));
 
     navigate("/orderpage");
   };
@@ -166,8 +175,7 @@ const Placeorderpage = () => {
             <hr></hr>
           </div>
           <div className="font-bold m-2">
-            <span className=" p-2 mt-10">Order Total</span>$
-            {sum + shipping + tax}
+            <span className=" p-2 mt-10">Order Total</span>${totalPrice}
             <hr></hr>
           </div>
           <div className="m-5">

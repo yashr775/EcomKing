@@ -36,7 +36,7 @@ const Shippingaddresspage = () => {
     }));
   };
 
-  const handleContinueClick = (event: FormEvent<HTMLFormElement>) => {
+  const handleContinueClick = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const { fullname, address, city, postalcode, country } = formData;
@@ -50,6 +50,13 @@ const Shippingaddresspage = () => {
     };
 
     setShippingAddressValue(shippingObject);
+    await fetch("http://localhost:5000/api/orders/addshippingaddress", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fullname, address, city, postalcode, country }),
+    });
 
     localStorage.setItem("shippingAddress", JSON.stringify(shippingObject));
     navigate("/paymentpage");

@@ -95,6 +95,7 @@ console.log(newUuid);
   
       // Create the associated orderItems
       await prisma.orderItem.createMany({
+        // @ts-ignore
         data: orderItems.map((item: any) => ({
             id:uuidv4(),
           productSlug: item.productSlug,
