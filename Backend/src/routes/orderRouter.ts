@@ -104,7 +104,7 @@ console.log(newUuid);
         })),
       });
   
-      res.status(200).send("Order placed successfully");
+      res.status(200).json(newUuid);
     } catch (error) {
       console.log("Some Error occurred");
       console.error("Internal Server Error :: " + error);

@@ -70,18 +70,41 @@ const Placeorderpage = () => {
     }
   };
 
-  const handlePlaceOrderClick = () => {
-    // const token = localStorage.getItem("authToken");
-    // const cartItems = JSON.parse(
-    //   localStorage.getIem("cartItems")
-    // ) as CartItem[];
+  const handlePlaceOrderClick = async () => {
+    const cartItems = JSON.parse(
+      localStorage.getItem("cartItems")!
+    ) as CartItem[];
 
-    // const orderItems = cartItems.map((cartItem) => ({
-    //   productSlug: cartItem.slug,
-    //   quantity: cartItem.quantity,
-    // }));
+    const orderItems = cartItems.map((cartItem) => ({
+      productSlug: cartItem.slug,
+      quantity: cartItem.quantity,
+    }));
 
-    navigate("/orderpage");
+    const paymentMethod = localStorage.getItem("paymentMethod");
+
+    const response = await fetch(
+      "http://localhost:5000/api/orders/placeorder",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token")!,
+        },
+        body: JSON.stringify({
+          orderItems,
+          paymentMethod,
+          itemsPrice: sum,
+          taxPrice: tax,
+          shippingPrice: shipping,
+          totalPrice,
+        }),
+      }
+    );
+
+    const responseData = await response.json();
+    console.log(responseData);
+
+    navigate(`/orderpage/${responseData}`);
   };
 
   useEffect(() => {
