@@ -50,13 +50,19 @@ const Shippingaddresspage = () => {
     };
 
     setShippingAddressValue(shippingObject);
-    await fetch("http://localhost:5000/api/orders/addshippingaddress", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fullname, address, city, postalcode, country }),
-    });
+    const response = await fetch(
+      "http://localhost:5000/api/orders/addshippingaddress",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token")!,
+        },
+        body: JSON.stringify({ fullname, address, city, postalcode, country }),
+      }
+    );
+    const responseData = await response.json();
+    console.log(responseData);
 
     localStorage.setItem("shippingAddress", JSON.stringify(shippingObject));
     navigate("/paymentpage");

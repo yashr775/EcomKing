@@ -71,15 +71,15 @@ const Placeorderpage = () => {
   };
 
   const handlePlaceOrderClick = () => {
-    const token = localStorage.getItem("authToken");
-    const cartItems = JSON.parse(
-      localStorage.getIem("cartItems")
-    ) as CartItem[];
+    // const token = localStorage.getItem("authToken");
+    // const cartItems = JSON.parse(
+    //   localStorage.getIem("cartItems")
+    // ) as CartItem[];
 
-    const orderItems = cartItems.map((cartItem) => ({
-      productSlug: cartItem.slug,
-      quantity: cartItem.quantity,
-    }));
+    // const orderItems = cartItems.map((cartItem) => ({
+    //   productSlug: cartItem.slug,
+    //   quantity: cartItem.quantity,
+    // }));
 
     navigate("/orderpage");
   };
