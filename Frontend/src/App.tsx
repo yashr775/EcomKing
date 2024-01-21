@@ -26,7 +26,7 @@ function App() {
             <Route path="/placeOrder" element={<Placeorderpage />} />
             <Route path="/paymentpage" element={<Paymentmethodpage />} />
             <Route path="/shippingaddress" element={<Shippingaddresspage />} />
-            <Route path="/order:orderId" element={<Orderpage />} />
+            <Route path="/order/:orderId" element={<Orderpage />} />
           </Route>
         </Routes>
       </Router>

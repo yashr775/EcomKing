@@ -104,7 +104,7 @@ const Placeorderpage = () => {
     const responseData = await response.json();
     console.log(responseData);
 
-    navigate(`/orderpage/${responseData}`);
+    navigate(`/order/${responseData}`);
   };
 
   useEffect(() => {
