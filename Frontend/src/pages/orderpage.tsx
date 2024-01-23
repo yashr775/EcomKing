@@ -92,6 +92,10 @@ const Orderpage = () => {
             )}
           </div>
         </div>
+        <div className="border border-blue-100 m-24 h-full">
+          <div className="font-semibold text-3xl p-4">Order Summary</div>
+          <div></div>
+        </div>
       </div>
     </div>
   );
