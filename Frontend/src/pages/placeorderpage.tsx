@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Navbar from "../components/Navbar";
-import { progress, theme } from "../atoms";
+import { PaymentAmount, amountDetails, progress, theme } from "../atoms";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { shippingaddress } from "../types/shippingAddress";
@@ -11,6 +11,10 @@ import { useNavigate } from "react-router-dom";
 
 const Placeorderpage = () => {
   const [, setProgress] = useRecoilState(progress);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [amountDetailsVal, setAmountDetailsVal] =
+    useRecoilState<PaymentAmount>(amountDetails);
+
   const themeVal = useRecoilValue(theme);
   const navigate = useNavigate();
 
@@ -67,6 +71,15 @@ const Placeorderpage = () => {
       }
       setShipping(tempShipping);
       setTotalPrice(tempSum + tempTax + tempShipping);
+
+      const tempAmountObj = {
+        itemsAmount: tempSum,
+        taxAmount: tempTax,
+        shippingAmount: tempShipping,
+        totalAmount: totalPrice,
+      };
+
+      setAmountDetailsVal(tempAmountObj);
     }
   };
 

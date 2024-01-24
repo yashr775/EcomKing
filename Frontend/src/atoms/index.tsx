@@ -36,3 +36,22 @@ export const isAuthenticated = atom<boolean>({
 });
 
 export const theme = atom<string>({ key: "theme", default: "Light" });
+
+export interface PaymentAmount {
+  itemsAmount: number;
+  taxAmount: number;
+  shippingAmount: number;
+  totalAmount: number;
+}
+
+const defaultPaymentAmount: PaymentAmount = {
+  itemsAmount: 0,
+  taxAmount: 0,
+  shippingAmount: 0,
+  totalAmount: 0,
+};
+
+export const amountDetails = atom<PaymentAmount>({
+  key: "amountDetails",
+  default: defaultPaymentAmount,
+});

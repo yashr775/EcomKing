@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
 import { useEffect, useState } from "react";
 import { CartItem } from "../types/cart";
+import { amountDetails } from "../atoms";
+import { useRecoilValue } from "recoil";
 
 interface ShippingData {
   fullname: string;
@@ -17,6 +19,10 @@ const Orderpage = () => {
   const [shippingData, setShippingData] = useState<ShippingData | undefined>();
   const [paymentData, setPaymentData] = useState();
   const [cartData, setCartData] = useState<CartItem[] | undefined>();
+
+  const amountDetailsVal = useRecoilValue(amountDetails);
+
+  const { taxAmount, itemsAmount, shippingAmount } = amountDetailsVal;
 
   useEffect(() => {
     setShippingData(JSON.parse(localStorage.getItem("shippingAddress")!));
@@ -92,9 +98,26 @@ const Orderpage = () => {
             )}
           </div>
         </div>
-        <div className="border border-blue-100 m-24 h-full">
+        <div className="border border-blue-100 m-24 h-full p-4">
           <div className="font-semibold text-3xl p-4">Order Summary</div>
-          <div></div>
+          <div className="py-2">
+            Items:<span className="pl-20">${itemsAmount}</span>
+          </div>
+          <hr />
+          <div className="py-2">
+            Shipping:<span className="pl-14">${shippingAmount}</span>
+          </div>
+          <hr />
+          <div className="py-2">
+            Tax: <span className="pl-24">${taxAmount}</span>
+          </div>
+          <hr />
+          <div className="py-2 font-bold">
+            Total Amount :{" "}
+            <span className="pl-5">
+              ${itemsAmount + shippingAmount + taxAmount}
+            </span>
+          </div>
         </div>
       </div>
     </div>
