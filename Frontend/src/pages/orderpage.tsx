@@ -33,6 +33,23 @@ const Orderpage = () => {
     setCartData(JSON.parse(localStorage.getItem("cartItems")!));
   }, []);
 
+  const handlePaymentClick = async () => {
+    const { taxAmount, itemsAmount, shippingAmount } = amountDetailsVal;
+    const amount = (taxAmount + itemsAmount + shippingAmount) * 100;
+
+    const response = await fetch("http://localhost:5000/api/payment/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount }),
+    });
+
+    const responseData = await response.json();
+
+    console.log(responseData);
+  };
+
   return (
     <div>
       <Helmet>
@@ -114,9 +131,12 @@ const Orderpage = () => {
           <hr />
           <div className="py-2 font-bold">
             Total Amount :{" "}
-            <span className="pl-5">
+            <span className="pl-3">
               ${itemsAmount + shippingAmount + taxAmount}
             </span>
+          </div>
+          <div className="py-2 flex justify-center bg-blue-600 rounded-xl text-white hover:bg-blue-900">
+            <button onClick={handlePaymentClick}>PAY</button>
           </div>
         </div>
       </div>

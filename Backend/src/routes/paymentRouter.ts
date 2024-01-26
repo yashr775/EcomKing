@@ -21,7 +21,10 @@ router.post("/order",async (req:Request,res:Response)=>{
             key_secret:RAZORPAY_KEY_SECRET
         })
 
+        const currency = "USD"
+
         const options =req.body;
+        options.currency="USD";
         console.log(options)
         const order = await razorpay.orders.create(options);
 
