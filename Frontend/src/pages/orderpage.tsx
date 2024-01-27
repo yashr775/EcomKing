@@ -14,6 +14,39 @@ interface ShippingData {
   postalcode: string;
 }
 
+interface RazorpayOptions {
+  key_id: string;
+  amount: string;
+  currency: string;
+  name: string;
+  description: string;
+  image: string;
+  order_id: string;
+  handler: (response: {
+    razorpay_payment_id: string;
+    razorpay_order_id: string;
+    razorpay_signature: string;
+  }) => void;
+  prefill: {
+    name: string;
+    email: string;
+    contact: string;
+  };
+  notes: {
+    address: string;
+  };
+  theme: {
+    color: string;
+  };
+}
+
+declare class Razorpay {
+  constructor(options: RazorpayOptions);
+  open(): void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  on(eventName: string, callback: (response: any) => void): void;
+}
+
 const Orderpage = () => {
   const { orderId } = useParams();
   const [shippingData, setShippingData] = useState<ShippingData | undefined>();
@@ -33,7 +66,7 @@ const Orderpage = () => {
     setCartData(JSON.parse(localStorage.getItem("cartItems")!));
   }, []);
 
-  const handlePaymentClick = async () => {
+  const handlePaymentClick = async (e: { preventDefault: () => void }) => {
     const { taxAmount, itemsAmount, shippingAmount } = amountDetailsVal;
     const amount = (taxAmount + itemsAmount + shippingAmount) * 100;
 
@@ -48,6 +81,62 @@ const Orderpage = () => {
     const responseData = await response.json();
 
     console.log(responseData);
+
+    const options = {
+      key_id: "rzp_test_oFO46ualTd6ocy", // Enter the Key ID generated from the Dashboard
+      amount: `${amount}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "USD",
+      name: "ECOM KING", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: responseData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: function (response: {
+        razorpay_payment_id: string;
+        razorpay_order_id: string;
+        razorpay_signature: string;
+      }) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+        name: "Gaurav Kumar", //your customer's name
+        email: "gaurav.kumar@example.com",
+        contact: "9000090000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const rzp1 = new Razorpay(options);
+    rzp1.on(
+      "payment.failed",
+      function (response: {
+        error: {
+          code: unknown;
+          description: unknown;
+          source: unknown;
+          step: unknown;
+          reason: unknown;
+          metadata: { order_id: unknown; payment_id: unknown };
+        };
+      }) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      }
+    );
+    rzp1.open();
+    e.preventDefault();
   };
 
   return (

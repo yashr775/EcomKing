@@ -37,6 +37,7 @@ router.post("/order",async (req:Request,res:Response)=>{
         
     } catch (error) {
         console.error("Internal server error :: "+error);
+        console.log(error);
        return res.status(500).send("Some Error occured");
     }
 
