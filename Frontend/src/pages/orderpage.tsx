@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet";
 import { useEffect, useState } from "react";
 import { CartItem } from "../types/cart";
-import { amountDetails } from "../atoms";
+import { amountDetails, theme } from "../atoms";
 import { useRecoilValue } from "recoil";
 
 interface ShippingData {
@@ -52,6 +52,7 @@ const Orderpage = () => {
   const [shippingData, setShippingData] = useState<ShippingData | undefined>();
   const [paymentData, setPaymentData] = useState();
   const [cartData, setCartData] = useState<CartItem[] | undefined>();
+  const themeVal = useRecoilValue(theme);
 
   const amountDetailsVal = useRecoilValue(amountDetails);
 
@@ -140,38 +141,86 @@ const Orderpage = () => {
   };
 
   return (
-    <div>
+    <div className={`${themeVal === "Dark" ? "bg-black" : "bg-white"}`}>
       <Helmet>
         <title>Order {orderId}</title>
       </Helmet>
       <Navbar />
-      <div className="flex justify-center mt-10">
+      <div
+        className={`${
+          themeVal === "Dark" ? "bg-black" : "bg-white"
+        } flex justify-center mt-10`}
+      >
         <div>
-          <div className="font-semibold text-4xl">Order {orderId}</div>
+          <div
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } font-semibold text-4xl`}
+          >
+            Order {orderId}
+          </div>
 
-          <div className="shipping mt-10 border border-slate-950 rounded-lg p-4">
-            <div className="text-2xl font-semibold">Shipping</div>
+          <div
+            className={`${
+              themeVal === "Dark" ? "border border-white" : "border-slate-950"
+            } shipping mt-10 border  rounded-lg p-4`}
+          >
+            <div
+              className={` ${
+                themeVal === "Dark" ? "text-white" : "text-black"
+              } text-2xl font-semibold`}
+            >
+              Shipping
+            </div>
             {shippingData ? (
               <>
-                <div className="mt-2 text-lg">
+                <div
+                  className={`${
+                    themeVal === "Dark" ? "text-white" : "text-black"
+                  } mt-2 text-lg`}
+                >
                   <span className="font-bold">Name: </span>{" "}
                   {shippingData.fullname}
                 </div>{" "}
-                <div className="mt-2 text-lg">
+                <div
+                  className={`${
+                    themeVal === "Dark" ? "text-white" : "text-black"
+                  } mt-2 text-lg`}
+                >
                   <span className="font-bold">Address: </span>
                   {shippingData.address},{shippingData.city},
                   {shippingData.postalcode},{shippingData.country}
                 </div>
               </>
             ) : (
-              <div>Loading shipping data...</div>
+              <div
+                className={`${
+                  themeVal === "Dark" ? "text-white" : "text-black"
+                }`}
+              >
+                Loading shipping data...
+              </div>
             )}
           </div>
-          <div className="payment mt-10 border border-slate-950 p-4">
-            <div className="text-2xl font-semibold">Payment</div>
+          <div
+            className={`${
+              themeVal === "Dark" ? "border border-white" : "border-black"
+            } payment mt-10 p-4`}
+          >
+            <div
+              className={`${
+                themeVal === "Dark" ? "text-white" : "text-black"
+              } text-2xl font-semibold`}
+            >
+              Payment
+            </div>
             {paymentData ? (
               <>
-                <div className="mt-2 text-lg">
+                <div
+                  className={`${
+                    themeVal === "Dark" ? "text-white" : "text-black"
+                  } mt-2 text-lg`}
+                >
                   <span className="font-bold">Method: </span>
                   {paymentData}
                 </div>
@@ -180,7 +229,13 @@ const Orderpage = () => {
               <div>No PaymentData Available</div>
             )}
           </div>
-          <div className="cartItems mt-10 border border-slate-950 p-4 mb-10">
+          <div
+            className={`${
+              themeVal === "Dark"
+                ? `border-white text-white`
+                : `border-black text-black`
+            } cartItems mt-10 border border-slate-950 p-4 mb-10`}
+          >
             <div className="text-2xl font-semibold">Items</div>
             {cartData ? (
               cartData.map((data) => {
@@ -204,21 +259,47 @@ const Orderpage = () => {
             )}
           </div>
         </div>
-        <div className="border border-blue-100 m-24 h-full p-4">
-          <div className="font-semibold text-3xl p-4">Order Summary</div>
-          <div className="py-2">
+        <div
+          className={`${
+            themeVal === "Dark" ? "border border-white" : "border border-black"
+          } border border-blue-100 m-24 h-full p-4`}
+        >
+          <div
+            className={` ${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } font-semibold text-3xl p-4`}
+          >
+            Order Summary
+          </div>
+          <div
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } py-2`}
+          >
             Items:<span className="pl-20">${itemsAmount}</span>
           </div>
           <hr />
-          <div className="py-2">
+          <div
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } py-2`}
+          >
             Shipping:<span className="pl-14">${shippingAmount}</span>
           </div>
           <hr />
-          <div className="py-2">
+          <div
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } py-2`}
+          >
             Tax: <span className="pl-24">${taxAmount}</span>
           </div>
           <hr />
-          <div className="py-2 font-bold">
+          <div
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } py-2 font-bold`}
+          >
             Total Amount :{" "}
             <span className="pl-3">
               ${itemsAmount + shippingAmount + taxAmount}
