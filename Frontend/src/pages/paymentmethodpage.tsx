@@ -55,29 +55,33 @@ const Paymentmethodpage = () => {
         <div className="flex justify-center mt-5">
           <input
             type="radio"
-            value="PayPal"
-            checked={selectedPaymentMethod === "PayPal"} // Set checked based on state
+            value="Online"
+            checked={selectedPaymentMethod === "Online"} // Set checked based on state
             onChange={handlePaymentMethodChange}
             className="flex pr-4"
           ></input>
           <span
-            className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } ml-4`}
           >
-            PayPal
+            Online
           </span>
         </div>
         <div className="flex justify-center mt-5">
           <input
             type="radio"
-            className="flex pr-4 "
-            value="Stripe"
-            checked={selectedPaymentMethod === "Stripe"} // Set checked based on state
+            className="flex ml-12 "
+            value="Cash on delivery"
+            checked={selectedPaymentMethod === "Cash on delivery"} // Set checked based on state
             onChange={handlePaymentMethodChange}
           ></input>
           <span
-            className={`${themeVal === "Dark" ? "text-white" : "text-black"}`}
+            className={`${
+              themeVal === "Dark" ? "text-white" : "text-black"
+            } pl-4`}
           >
-            Stripe
+            Cash on delivery
           </span>
         </div>
         <div className="flex justify-center mt-5">
