@@ -1,12 +1,13 @@
 import { CiSearch } from "react-icons/ci";
 import { PiShoppingCart } from "react-icons/pi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { theme } from "../atoms";
 import { useRecoilState } from "recoil";
 
 const Navbar = () => {
   const [themeMode, setThemeMode] = useRecoilState(theme);
+  const [IsLogin, SetIsLogin] = useState<string | null>(null);
 
   const goToHome = () => {
     window.location.href = "/";
@@ -31,6 +32,11 @@ const Navbar = () => {
       setThemeMode("Light");
     }
   };
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("auth-token");
+    SetIsLogin(authToken);
+  }, [IsLogin]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -69,8 +75,14 @@ const Navbar = () => {
             />
             {isDropdownOpen && (
               <ul className="absolute bg-black text-white mt-10  p-4">
-                <li onClick={goToSignin}>Sign In</li>
-                <li onClick={goToSignup}>Sign Up</li>
+                {!IsLogin ? (
+                  <>
+                    <li onClick={goToSignin}>Sign In</li>
+                    <li onClick={goToSignup}>Sign Up</li>
+                  </>
+                ) : (
+                  <li>Sign Out</li>
+                )}
               </ul>
             )}
           </li>
