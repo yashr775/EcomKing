@@ -4,10 +4,13 @@ import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { theme } from "../atoms";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [themeMode, setThemeMode] = useRecoilState(theme);
   const [IsLogin, SetIsLogin] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const goToHome = () => {
     window.location.href = "/";
@@ -31,6 +34,11 @@ const Navbar = () => {
     } else {
       setThemeMode("Light");
     }
+  };
+
+  const handleSignoutClick = () => {
+    localStorage.removeItem("auth-token");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -81,7 +89,7 @@ const Navbar = () => {
                     <li onClick={goToSignup}>Sign Up</li>
                   </>
                 ) : (
-                  <li>Sign Out</li>
+                  <li onClick={handleSignoutClick}>Sign Out</li>
                 )}
               </ul>
             )}
