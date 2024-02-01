@@ -84,10 +84,10 @@ const Navbar = () => {
             {isDropdownOpen && (
               <ul className="absolute bg-black text-white mt-10  p-4">
                 {!IsLogin ? (
-                  <>
+                  <div>
                     <li onClick={goToSignin}>Sign In</li>
                     <li onClick={goToSignup}>Sign Up</li>
-                  </>
+                  </div>
                 ) : (
                   <li onClick={handleSignoutClick}>Sign Out</li>
                 )}
