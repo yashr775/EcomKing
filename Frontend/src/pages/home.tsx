@@ -20,7 +20,10 @@ const Home = () => {
         <title>ECOM KING</title>
       </Helmet>
       <Navbar />
-      <Slider />
+      <div className="pt-7">
+        <Slider />
+      </div>
+
       {/* {cartItemArr.map((item) => (
         <div key={item.slug} className="font-bold flex justify-center">
           {item.name}
