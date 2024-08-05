@@ -44,4 +44,7 @@ Payment page
 ![paymentpopup](https://github.com/user-attachments/assets/1ba1fb68-4f4f-4d7c-bc69-628f30ec05f2)
 ![carddetails](https://github.com/user-attachments/assets/32bc023f-a51b-4811-9232-b946efdd5027)
 
+How to set up locally
+
+
 
