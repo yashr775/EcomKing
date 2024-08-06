@@ -46,5 +46,7 @@ Payment page
 
 How to set up locally
 
+have postgres installed locally in .env file of backend add DATABASE_URL , JWT_SECRET , RAZORPAY_KEY_SECRET , RAZORPAY_KEY_ID  the entire project has been built in typescript so compile the file and run node index.js and for frontend is in react so cd into frontend and run npm run dev.
+
 
 
